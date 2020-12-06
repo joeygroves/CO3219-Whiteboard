@@ -42,18 +42,21 @@ const Whiteboard = mongoose.model('Whiteboard', WhiteboardSchema);
 
 function onConnection(socket) {
 
-    const objects = Whiteboard.find({ }, { _id: 0, __v: 0 } , function(err, results){
+    Whiteboard.find({}, { _id: 0, __v: 0 }, function (err, results) {
+        socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
         console.log(results);
-    });
-    
-    /*
-    for (board in objects) {
+        for (item in results) {
+            socket.emit('drawing', results[item].data);
+        }
+    })
+
+
+    /*for (board in objects) {
         console.log(board);
         socket.on('drawing', (board) => {
             socket.broadcast.emit('drawing', board);
         });
-    };
-    */
+    };*/
 
 
     socket.on('drawing', (data) => {
