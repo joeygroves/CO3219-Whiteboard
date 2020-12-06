@@ -3,5 +3,5 @@
 First:
 npm install
 
-ThenL
+Then:
 node server.js
