@@ -23,7 +23,6 @@ app.use(express.static(__dirname + '/public'));
 
 //Database
 const mongoose = require('mongoose');
-//const { Double } = require('mongodb');
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
@@ -44,19 +43,12 @@ function onConnection(socket) {
 
     Whiteboard.find({}, { _id: 0, __v: 0 }, function (err, results) {
         socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
-        console.log(results);
+        //console.log(results);
         for (item in results) {
             socket.emit('drawing', results[item].data);
         }
     })
 
-
-    /*for (board in objects) {
-        console.log(board);
-        socket.on('drawing', (board) => {
-            socket.broadcast.emit('drawing', board);
-        });
-    };*/
 
 
     socket.on('drawing', (data) => {
@@ -70,6 +62,8 @@ function onConnection(socket) {
         //console.log(typeof data.x0);
         //console.log(data.color);
     });
+
+    
 
 
 
@@ -85,6 +79,16 @@ function onConnection(socket) {
         console.log(`${users[socket.id]} disconnected`);
         socket.broadcast.emit('user-disconnected', users[socket.id]);
         delete users[socket.id];
+    });
+
+
+    //Clear whiteboard
+
+    socket.on('clear', () =>{
+        Whiteboard.deleteMany({}, function(){
+            socket.emit('cleared');
+        });
+
     });
 
 }

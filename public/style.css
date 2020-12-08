@@ -25,10 +25,13 @@
     right: 0;
     bottom: 0;
     top: 0;
+    z-index: 1;
   }
   
   .colors {
     position: fixed;
+    z-index: 2;
+    margin-top: 20px;
   }
   
   .color {
@@ -62,4 +65,10 @@
   #message-container div:nth-child(2n) {
     background-color: #FFF;
 
+  }
+
+  #btnClear {
+    position: fixed;
+    float: right;
+    z-index: 3;
   }

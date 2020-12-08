@@ -8,6 +8,8 @@
     var colors = document.getElementsByClassName('color');
     var context = canvas.getContext('2d');
 
+    var clearBtn = document.getElementById('btnClear');
+
 
     var current = {
         color: 'black'
@@ -130,5 +132,22 @@
         messageElement.innerText = message;
         messageContainer.append(messageElement);
     };
+
+
+    clearBtn.addEventListener('click', function () {
+        socket.emit('clear');
+        clearCanvas();
+    });
+
+
+    
+    function clearCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
+    // Clear Message
+    socket.on('cleared', function(){
+        console.log("Cleared whiteboard");
+    });
 
 })();
