@@ -90,7 +90,7 @@ function onConnection(socket) {
     socket.on('clear', () => {
         Whiteboard.deleteMany({}, function(){
             io.emit('cleared');
-            console.log("TEST");
+            //console.log("TEST");
         });
 
     });
