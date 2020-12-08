@@ -134,20 +134,22 @@
     };
 
 
+
+    //Clear Canvas
     clearBtn.addEventListener('click', function () {
         socket.emit('clear');
         clearCanvas();
     });
 
 
-    
     function clearCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
     // Clear Message
-    socket.on('cleared', function(){
+    socket.on('cleared', function () {
         console.log("Cleared whiteboard");
+        clearCanvas();
     });
 
 })();

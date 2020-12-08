@@ -84,9 +84,10 @@ function onConnection(socket) {
 
     //Clear whiteboard
 
-    socket.on('clear', () =>{
+    socket.on('clear', () => {
         Whiteboard.deleteMany({}, function(){
-            socket.emit('cleared');
+            io.emit('cleared');
+            console.log("TEST");
         });
 
     });
