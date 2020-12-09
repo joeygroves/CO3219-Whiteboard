@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 //Database
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL, {
+mongoose.connect('mongodb+srv://jgroves:QA6CcxO7idKq1YU8@cluster0.eeeuh.mongodb.net/whiteboard?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
