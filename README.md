@@ -1,6 +1,6 @@
 # CO3219-Whiteboard
 
-###### A whiteboard application written in Node.js and using the socket.io library for CO3219 Internet and Cloud Computing. Originally written in November 2020.
+###### A whiteboard application written in Node.js and using the socket.io library for CO3219 Internet and Cloud Computing Assignment 2. Originally written in November 2020.
 -----------
 
 ## Installation
